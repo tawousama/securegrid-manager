@@ -1,33 +1,49 @@
-# Utiliser Python 3.11
+# ═══════════════════════════════════════════════════════════
+# ElectroSecure Platform — Dockerfile Railway
+# ═══════════════════════════════════════════════════════════
+
 FROM python:3.11-slim
 
-# Ne pas mettre les fichiers .pyc en cache
-ENV PYTHONUNBUFFERED=1
+# Variables
+ENV PYTHONUNBUFFERED=1 \
+    PYTHONDONTWRITEBYTECODE=1
 
-# Répertoire de travail
 WORKDIR /app
 
-# Installer PostgreSQL et dépendances
+# Installer PostgreSQL client
 RUN apt-get update && \
-    apt-get install -y postgresql-client libpq-dev gcc && \
-    rm -rf /var/lib/apt/lists/*
+    apt-get install -y --no-install-recommends \
+        postgresql-client \
+        libpq-dev \
+        gcc \
+    && rm -rf /var/lib/apt/lists/*
 
-# Copier les requirements
+# Copier et installer requirements
 COPY requirements/base.txt requirements/
-
-# Installer les dépendances Python
 RUN pip install --no-cache-dir -r requirements/base.txt && \
-    pip install --no-cache-dir gunicorn dj-database-url whitenoise
+    pip install --no-cache-dir \
+        gunicorn==21.2.0 \
+        dj-database-url==2.1.0 \
+        whitenoise==6.6.0 \
+        psycopg2-binary==2.9.9
 
-# Copier tout le code
+# Copier le code
 COPY . .
 
-# Collecter les fichiers statiques
+# Créer dossiers
+RUN mkdir -p staticfiles media logs
+
+# Collecter statiques
 RUN python manage.py collectstatic --noinput || true
 
-# Port par défaut
+# Port
 EXPOSE 8000
 
-# Commande de démarrage
-CMD python manage.py migrate && \
-    gunicorn config.wsgi:application --bind 0.0.0.0:$PORT --workers 2
+# Commande SIMPLE (Railway gère les migrations via nixpacks)
+CMD gunicorn config.wsgi:application \
+    --bind 0.0.0.0:$PORT \
+    --workers 2 \
+    --timeout 120 \
+    --access-logfile - \
+    --error-logfile - \
+    --log-level info
