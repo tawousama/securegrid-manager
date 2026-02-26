@@ -25,16 +25,25 @@ ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS_LIST', '').split(',')
 
 # ── Base de données : PostgreSQL ──────────────────────────────
 # Format DATABASE_URL : postgresql://user:password@host:5432/dbname
+
 import dj_database_url  # pip install dj-database-url
+
+DATABASE_URL = os.environ.get('DATABASE_URL')
+
+if not DATABASE_URL:
+    raise ValueError(
+        "❌ DATABASE_URL environment variable is required in production!\n"
+        "Add PostgreSQL service on Railway:\n"
+        "  Railway Dashboard → New → Database → Add PostgreSQL"
+    )
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.environ.get('DATABASE_URL'),
+        default=DATABASE_URL,
         conn_max_age=600,        # Connexions persistantes (10 min)
         conn_health_checks=True, # Vérif de santé avant chaque requête
     )
 }
-
 # ── Cache : Redis ─────────────────────────────────────────────
 CACHES = {
     'default': {
