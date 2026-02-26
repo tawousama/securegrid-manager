@@ -1,0 +1,39 @@
+# Core Django
+Django
+djangorestframework
+
+# Database
+psycopg2-binary
+
+# Environment variables
+python-decouple
+
+# Authentication & Security
+django-oauth-toolkit
+djangorestframework-simplejwt
+django-two-factor-auth
+qrcode
+cryptography
+pyotp
+# CORS
+django-cors-headers
+
+# Async tasks
+celery
+redis
+django-celery-beat
+
+# API Documentation
+drf-spectacular
+
+# Data processing (pour calculs électriques)
+pandas
+numpy
+scipy
+
+# Utilities
+python-slugify
+Pillow
+
+# Monitoring & Logging
+django-extensions
