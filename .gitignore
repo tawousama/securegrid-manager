@@ -1,0 +1,192 @@
+# ═══════════════════════════════════════════════════════════
+# ElectroSecure Platform — .gitignore
+# ═══════════════════════════════════════════════════════════
+
+# ── Python ─────────────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+pip-wheel-metadata/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# ── Environnement virtuel ──────────────────────────────────
+venv/
+env/
+ENV/
+.venv
+.env.local
+env.bak/
+venv.bak/
+
+# ── Django ─────────────────────────────────────────────────
+*.log
+db.sqlite3
+db.sqlite3-journal
+local_settings.py
+
+# Fichiers médias (mais garder les dossiers)
+/media/*
+!/media/.gitkeep
+
+# Fichiers statiques collectés
+/staticfiles/*
+!/staticfiles/.gitkeep
+
+# Logs
+/logs/*
+!/logs/.gitkeep
+
+# ── Variables d'environnement ──────────────────────────────
+.env
+.env.local
+.env.*.local
+*.env
+
+# ── IDE ────────────────────────────────────────────────────
+# PyCharm
+.idea/
+*.iml
+*.iws
+.idea_modules/
+
+# VSCode
+.vscode/
+*.code-workspace
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# Vim
+*.swp
+*.swo
+*~
+
+# Emacs
+*~
+\#*\#
+/.emacs.desktop
+/.emacs.desktop.lock
+*.elc
+
+# ── OS ─────────────────────────────────────────────────────
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+
+# ── Tests ──────────────────────────────────────────────────
+.pytest_cache/
+.coverage
+.coverage.*
+htmlcov/
+.tox/
+.hypothesis/
+*.cover
+.cache
+nosetests.xml
+coverage.xml
+*.coveragerc
+
+# ── Documentation ──────────────────────────────────────────
+docs/_build/
+docs/.doctrees/
+site/
+
+# ── Celery ─────────────────────────────────────────────────
+celerybeat-schedule
+celerybeat.pid
+
+# ── Jupyter Notebook ───────────────────────────────────────
+.ipynb_checkpoints
+*.ipynb
+
+# ── Node.js (si frontend React) ────────────────────────────
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.npm
+.yarn/
+.pnp.*
+frontend/build/
+frontend/dist/
+
+# ── Docker ─────────────────────────────────────────────────
+*.pid
+*.seed
+*.pid.lock
+
+# ── Backup & temp ──────────────────────────────────────────
+*.bak
+*.tmp
+*.orig
+*_old.*
+*_backup.*
+README_old.md
+
+# ── Migrations (optionnel) ─────────────────────────────────
+# Décommenter si tu ne veux pas versionner les migrations
+# */migrations/*.py
+# !*/migrations/__init__.py
+
+# ── Fichiers spécifiques projet ───────────────────────────
+# Dumps SQL
+*.sql
+*.dump
+
+# Exports
+exports/
+*.csv
+*.xlsx
+*.pdf
+
+# Données de test
+fixtures/test_data.json
+
+# ── Sécurité ───────────────────────────────────────────────
+# Ne JAMAIS committer ces fichiers sensibles
+*.pem
+*.key
+*.crt
+*.p12
+secrets/
+credentials/
+
+# ── Divers ─────────────────────────────────────────────────
+.python-version
+.ropeproject
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
